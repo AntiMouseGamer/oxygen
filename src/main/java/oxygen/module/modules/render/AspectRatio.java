@@ -3,6 +3,7 @@ package oxygen.module.modules.render;
 import org.lwjgl.input.Keyboard;
 import oxygen.module.Module;
 import oxygen.module.ModuleCategory;
+import oxygen.setting.settings.BooleanSetting;
 import oxygen.setting.settings.DoubleSetting;
 import oxygen.setting.settings.IntegerSetting;
 import oxygen.setting.settings.ListSetting;
@@ -40,6 +41,11 @@ public class AspectRatio extends Module {
 			2000,
 			1,
 			() -> aspectType.value.equals("Resolution")
+	);
+
+	public final BooleanSetting dontAffectHand = new BooleanSetting(
+			"Dont Affect Hand",
+			false
 	);
 
 	public AspectRatio() {

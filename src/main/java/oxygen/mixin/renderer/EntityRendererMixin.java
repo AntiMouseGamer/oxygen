@@ -32,7 +32,32 @@ public class EntityRendererMixin {
 	@Redirect(
 			method = {
 					"renderHand(FI)V",
-					"render(FIZZZ)V",
+					"renderHand(FIZZZ)V"
+			},
+			at = @At(
+					value = "INVOKE",
+					target = "Lorg/lwjgl/util/glu/Project;gluPerspective(FFFF)V"
+			),
+			remap = false
+	)
+	public void gluPerspective_changeHandAspect(float fovY, float aspect, float zNear, float zFar) {
+		AspectRatio aspectRatio = ModuleManager.getModule(AspectRatio.class);
+
+		if (aspectRatio.isEnabled()) {
+			if (!aspectRatio.dontAffectHand.value) {
+				if (aspectRatio.aspectType.value.equals("Ratio")) {
+					aspect = aspectRatio.ratio.value.floatValue();
+				} else {
+					aspect = aspectRatio.width.value.floatValue() / aspectRatio.height.value.floatValue();
+				}
+			}
+		}
+
+		Project.gluPerspective(fovY, aspect, zNear, zFar);
+	}
+
+	@Redirect(
+			method = {
 					"setupCameraTransform",
 					"renderCloudsCheck",
 					"renderWorldPass"
