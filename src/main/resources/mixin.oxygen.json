@@ -1,0 +1,15 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "package": "oxygen.mixin",
+  "refmap": "refmap.oxygen.json",
+  "mixins": [
+    "entity.EntityLivingBaseMixin"
+  ],
+  "client": [
+    "client.MinecraftMixin",
+    "entity.EntityPlayerSPMixin",
+    "renderer.EntityRendererMixin",
+    "util.MovementInputFromOptionsMixin"
+  ],
+  "server": []
+}
