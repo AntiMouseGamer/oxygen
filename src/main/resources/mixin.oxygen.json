@@ -6,6 +6,7 @@
     "entity.EntityLivingBaseMixin"
   ],
   "client": [
+    "client.KeybindingMixin",
     "client.MinecraftMixin",
     "entity.EntityPlayerSPMixin",
     "renderer.EntityRendererMixin",

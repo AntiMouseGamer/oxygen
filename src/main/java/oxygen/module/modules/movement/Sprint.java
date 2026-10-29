@@ -13,23 +13,29 @@ import oxygen.setting.settings.BooleanSetting;
 import oxygen.setting.settings.ListSetting;
 
 public class Sprint extends Module {
-	private final ListSetting type = new ListSetting(
+	public final ListSetting type = new ListSetting(
 			"Type",
 			"Keybind",
 			"Keybind",
+			"Overwrite",
 			"Direct"
 	);
 
 	private final ListSetting eventType = new ListSetting(
-			"Type",
+			"Event Type",
 			"RenderTick",
 			() -> type.value.equals("Keybind"),
 			"Tick",
 			"RenderTick"
 	);
 
-	private final BooleanSetting forwardOnly = new BooleanSetting(
+	public final BooleanSetting forwardOnly = new BooleanSetting(
 			"Forward Only",
+			false
+	);
+
+	public final BooleanSetting disableWTap = new BooleanSetting(
+			"Disable WTap",
 			false
 	);
 
@@ -63,11 +69,13 @@ public class Sprint extends Module {
 	@EventLink
 	private final Listener<RenderTickEvent> onRenderTick = (event) -> {
 		if (type.value.equals("Keybind")) {
-			if (eventType.value.equals("RenderTick")) {
-				KeyBinding.setKeyBindState(
-						mc.gameSettings.keyBindSprint.getKeyCode(),
-						!forwardOnly.value || mc.thePlayer.movementInput.moveForward > 0
-				);
+			if (mc.theWorld != null && mc.thePlayer != null) {
+				if (eventType.value.equals("RenderTick")) {
+					KeyBinding.setKeyBindState(
+							mc.gameSettings.keyBindSprint.getKeyCode(),
+							!forwardOnly.value || mc.thePlayer.movementInput.moveForward > 0
+					);
+				}
 			}
 		}
 	};
@@ -76,10 +84,12 @@ public class Sprint extends Module {
 	private final Listener<PreTickEvent> onPreTick = (event) -> {
 		if (type.value.equals("Keybind")) {
 			if (eventType.value.equals("Tick")) {
-				KeyBinding.setKeyBindState(
-						mc.gameSettings.keyBindSprint.getKeyCode(),
-						!forwardOnly.value || mc.thePlayer.movementInput.moveForward > 0
-				);
+				if (mc.theWorld != null && mc.thePlayer != null) {
+					KeyBinding.setKeyBindState(
+							mc.gameSettings.keyBindSprint.getKeyCode(),
+							!forwardOnly.value || mc.thePlayer.movementInput.moveForward > 0
+					);
+				}
 			}
 		}
 	};

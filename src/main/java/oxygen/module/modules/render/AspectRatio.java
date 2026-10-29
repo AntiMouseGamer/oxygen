@@ -16,8 +16,8 @@ public class AspectRatio extends Module {
 			"Resolution"
 	);
 
-	public final DoubleSetting ratio = new DoubleSetting(
-			"Ratio",
+	public final DoubleSetting ratioX = new DoubleSetting(
+			"Ratio X",
 			1.2,
 			0.01,
 			5.0,
@@ -25,8 +25,17 @@ public class AspectRatio extends Module {
 			() -> aspectType.value.equals("Ratio")
 	);
 
-	public final IntegerSetting width = new IntegerSetting(
-			"Width",
+	public final DoubleSetting ratioY = new DoubleSetting(
+			"Ratio Y",
+			1.2,
+			0.01,
+			5.0,
+			0.01,
+			() -> aspectType.value.equals("Ratio")
+	);
+
+	public final IntegerSetting widthX = new IntegerSetting(
+			"Width X",
 			1280,
 			1,
 			2000,
@@ -34,8 +43,26 @@ public class AspectRatio extends Module {
 			() -> aspectType.value.equals("Resolution")
 	);
 
-	public final IntegerSetting height = new IntegerSetting(
-			"Height",
+	public final IntegerSetting heightX = new IntegerSetting(
+			"Height X",
+			1024,
+			1,
+			2000,
+			1,
+			() -> aspectType.value.equals("Resolution")
+	);
+
+	public final IntegerSetting widthY = new IntegerSetting(
+			"Width Y",
+			1280,
+			1,
+			2000,
+			1,
+			() -> aspectType.value.equals("Resolution")
+	);
+
+	public final IntegerSetting heightY = new IntegerSetting(
+			"Height Y",
 			1024,
 			1,
 			2000,

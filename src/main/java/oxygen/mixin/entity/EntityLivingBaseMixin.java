@@ -1,5 +1,6 @@
 package oxygen.mixin.entity;
 
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.Vec3;
@@ -25,11 +26,13 @@ public abstract class EntityLivingBaseMixin extends Entity {
 	public void getLook_fixMouseDelay(float partialTicks, CallbackInfoReturnable<Vec3> cir) {
 		MouseDelayFix mouseDelayFix = ModuleManager.getModule(MouseDelayFix.class);
 
-		if (mouseDelayFix.isEnabled()) {
-			if (mouseDelayFix.mode.value.equals("prplz")) {
-				cir.setReturnValue(super.getLook(partialTicks));
-			} else {
-				cir.setReturnValue(getVectorForRotation(rotationPitch, rotationYaw));
+		if ((Object) this instanceof EntityPlayerSP) {
+			if (mouseDelayFix.isEnabled()) {
+				if (mouseDelayFix.mode.value.equals("prplz")) {
+					cir.setReturnValue(super.getLook(partialTicks));
+				} else {
+					cir.setReturnValue(getVectorForRotation(rotationPitch, rotationYaw));
+				}
 			}
 		}
 	}
