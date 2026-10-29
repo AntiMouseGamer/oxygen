@@ -27,7 +27,7 @@ public class AspectRatio extends Module {
 
 	public final DoubleSetting ratioY = new DoubleSetting(
 			"Ratio Y",
-			1.2,
+			1.0,
 			0.01,
 			5.0,
 			0.01,
@@ -54,7 +54,7 @@ public class AspectRatio extends Module {
 
 	public final IntegerSetting widthY = new IntegerSetting(
 			"Width Y",
-			1280,
+			1,
 			1,
 			2000,
 			1,
@@ -63,7 +63,7 @@ public class AspectRatio extends Module {
 
 	public final IntegerSetting heightY = new IntegerSetting(
 			"Height Y",
-			1024,
+			1,
 			1,
 			2000,
 			1,

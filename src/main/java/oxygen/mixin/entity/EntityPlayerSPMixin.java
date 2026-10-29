@@ -32,7 +32,7 @@ public class EntityPlayerSPMixin {
 	public void onLivingUpdate_disableWTap(CallbackInfo ci) {
 		Sprint sprint = ModuleManager.getModule(Sprint.class);
 
-		if (sprint.disableWTap.value) {
+		if (sprint.isEnabled() && sprint.disableWTap.value) {
 			sprintToggleTimer = 0;
 		}
 	}
